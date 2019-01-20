@@ -11,6 +11,7 @@ describe('authentication', function(){
         // passing any username and password, faking an express response object 
         let req = {body:{username:'nick@gmail.com',password:"123"}}
         let res = {
+            status: function(){},
             send: input =>{
                 JWT = input
                 done()}

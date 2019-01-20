@@ -13,6 +13,10 @@ Then
 npm install && npm start
 ```
 
+## CI / CD
+Continuous Tntegration set with Travis CI
+Continuous Deployment set with Heroku at https://shopify-marketplace.herokuapp.com/
+
 ### Steps
 * First you must login at  POST localhost:8080/login by sending a request with the JSON {username:"any username will do", password: "any password will do"}
 * This will return a JWT Token which will be valid for 1hour and that you must add with header 'authorization' to the following requests
