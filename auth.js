@@ -45,6 +45,6 @@ function createToken(req,res){
 
         if(err) return res.status(500).send(err)
         
-        res.send(token)
+        return res.send(token)
       });
 }
