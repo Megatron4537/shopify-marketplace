@@ -8,9 +8,12 @@ const {
     graphql
 } = require('graphql')
 
-// dummy data
+// dummy data that first populates our db
 const products = require('./products.json')
 
+/**
+ * Product schema
+ */
 const productType = new GraphQLObjectType({
     name:'Product',
     fields: () => ({
@@ -22,6 +25,7 @@ const productType = new GraphQLObjectType({
     })
 })
 
+// define queries
 const rootQuery = new GraphQLObjectType({
     name:'RootQueryType',
     fields: {
@@ -46,13 +50,6 @@ const rootQuery = new GraphQLObjectType({
 
                 return itemsFound
             }
-        },
-        all: {
-            type: new GraphQLList(productType),    
-            args: {all:{type:GraphQLString}},
-            resolve(parent,args){
-                return products
-            }
         }
     }
 })
@@ -61,6 +58,11 @@ const schema = new GraphQLSchema({
     query: rootQuery
 })
 
+/**
+ * Returns 0 or many products
+ * @param {String} type @example t-shirt
+ * @param {*} callback 
+ */
 function getProductsByType(type,callback){
     graphql(schema,`{type(type:\"${type}\"){type id price quantity variant}}`)
     .then(res=>{
@@ -69,6 +71,11 @@ function getProductsByType(type,callback){
     .catch(callback)
 }
 
+/**
+ *  Returns 0 or 1 product
+ * @param {Number} id @example 11
+ * @param {*} callback 
+ */
 function getProductById(id,callback){
     graphql(schema,`{id(id:${id}){type id price quantity variant}}`)
     .then(res=>{
@@ -77,10 +84,17 @@ function getProductById(id,callback){
     .catch(callback)
 }
 
+/** 
+ * Returns all products
+*/
 function getAll(callback){
     callback(null,products)
 }
 
+/**
+ * Decrements a products quantity by 1 and return the product
+ * @param {Number} id @example 11
+ */
 function decrementQuantity(id){
 
     let product = products.find(item => item.id === id)

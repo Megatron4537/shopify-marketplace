@@ -3,6 +3,7 @@ const GRAPHQL = require('./graphql/graphql')
 
 module.exports = class Cart{
 
+    // For simplicity a Carts id is the same id given to a user
     constructor(id){
         this.id = id
         this.products = []
@@ -28,6 +29,9 @@ module.exports = class Cart{
         return itemFound
     }
 
+    /**
+     * Decrements quantity for each product in cart and returns the total price
+     */
     checkout(){
 
         let total = 0

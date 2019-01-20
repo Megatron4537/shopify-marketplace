@@ -14,6 +14,10 @@ const Cart = require('./cart')
 
 const carts = []
 
+/**
+ * @description Util function to retrieve a cart
+ * @param {Number} id 
+ */
 function getCart(id){
 
     const myCart = carts.find(cart => cart.getId() === id)
@@ -21,6 +25,11 @@ function getCart(id){
     return myCart
 }
 
+/**
+ * @description Create a cart before adding items to it and checking out
+ * @param {*} req 
+ * @param {*} res 
+ */
 function createCart(req,res){
 
     if(carts.find(cart => cart.getId() === req.user.id)) return res.send({message:'Cart already exists.'})
@@ -32,6 +41,11 @@ function createCart(req,res){
     res.send({message:'Cart created'})
 }
 
+/**
+ * @description Get a product by id or get a list of products by type
+ * @param {*} req 
+ * @param {*} res 
+ */
 function getProduct(req,res){
 
     const products = []
@@ -54,6 +68,11 @@ function getProduct(req,res){
     else return res.status(400).send({message:'Error invalid query parameters'})
 }
 
+/**
+ * @description Returns all products
+ * @param {*} req 
+ * @param {*} res 
+ */
 function getAllProducts(req,res){
 
     GRAPHQL.getAll((err,products)=>{
@@ -63,6 +82,11 @@ function getAllProducts(req,res){
     })
 }
 
+/**
+ * @description Add product to a user's cart
+ * @param {*} req 
+ * @param {*} res 
+ */
 function addProduct(req,res){
 
     const myCart = getCart(req.user.id)
@@ -84,6 +108,11 @@ function addProduct(req,res){
     })
 }
 
+/**
+ * @description Returns the total price of the cart, decrements each products quantity by 1 and deletes the cart
+ * @param {*} req 
+ * @param {*} res 
+ */
 function checkout(req,res){
 
     const myCart = getCart(req.user.id)
@@ -101,6 +130,11 @@ function checkout(req,res){
 }
 
 
+/**
+ * @description Returns a user's cart
+ * @param {*} req 
+ * @param {*} res 
+ */
 function cart(req,res){
 
     const myCart = getCart(req.user.id)
