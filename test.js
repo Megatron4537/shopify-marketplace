@@ -7,6 +7,7 @@ const AUTHENTICATE = require('./auth').authenticate
 describe('authentication', function(){
 
     let JWT
+
     it('should login and create a JWT token', function(done){
         // passing any username and password, faking an express response object 
         let req = {body:{username:'nick@gmail.com',password:"123"}}
@@ -37,6 +38,5 @@ describe('authentication', function(){
         AUTHENTICATE(req,res,done)
 
         EXPECT(req.user.username).to.equal('nick@gmail.com')
-
     })
 })
