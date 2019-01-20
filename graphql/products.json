@@ -1,0 +1,49 @@
+[{
+    "id":10,
+    "type": "t-shirt",
+    "variant": "blue",
+    "price" : 19.99,
+    "quantity": 20
+},
+{
+    "id":11,
+    "type": "pants",
+    "variant": "blue",
+    "price" : 39.99,
+    "quantity": 3
+},
+{
+    "id":12,
+    "type": "sweatshirt",
+    "variant": "blue",
+    "price" : 29.99,
+    "quantity": 12
+},
+{
+    "id":13,
+    "type": "t-shirt",
+    "variant": "black",
+    "price" : 19.99,
+    "quantity": 1
+},
+{
+    "id":14,
+    "type": "hat",
+    "variant": "black",
+    "price" : 14.99,
+    "quantity": 2
+},
+{
+    "id":15,
+    "type": "t-shirt",
+    "variant": "white",
+    "price" : 19.99,
+    "quantity": 15
+},
+{
+    "id":16,
+    "type": "pants",
+    "variant": "black",
+    "price" : 39.99,
+    "quantity": 10
+}]
